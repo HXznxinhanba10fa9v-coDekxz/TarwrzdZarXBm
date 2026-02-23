@@ -1,10 +1,7 @@
 export default {
   async fetch(request, env) {
-    const url = new URL(request.url)
-
-    if (url.pathname !== "/confziwr" || request.method !== "POST") {
-      return new Response("Not Found", { status: 404 })
-    }
+    if (request.method !== "POST") return new Response("Not Found", { status: 404 })
+    if (new URL(request.url).pathname !== "/confziwr") return new Response("Not Found", { status: 404 })
 
     try {
       const data = await request.json()
